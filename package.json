@@ -36,10 +36,7 @@
     "dawson"
   ],
   "dependencies": {
-    "crypto": "0.0.3",
-    "del": "^2.2.0",
     "file-bytes": "^2.0.1",
-    "glob": "^7.0.3",
     "globby": "^4.0.0",
     "pify": "^2.3.0",
     "rimraf": "^2.5.2"
