@@ -1,11 +1,10 @@
-import test from 'ava';
-import skrub from './';
 const fs = require('fs');
 const pathExists = require('path-exists');
-const fileBytes = require('file-bytes');
 const tempWrite = require('temp-write');
+import test from 'ava';
+import skrub from './';
 
-test.only('valid args to main', t => {
+test('valid args to main', t => {
   t.throws(skrub(), TypeError);
 });
 
@@ -28,8 +27,8 @@ test('floods file', async t => {
 });
 
 test('removes file', async t => {
-  const file = tempWrite.sync();
-  await skrub(file)
+  const file = tempWrite.sync('');
+  await skrub(file);
 
   t.false(pathExists.sync(file));
 });
