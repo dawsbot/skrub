@@ -1,0 +1,55 @@
+{
+  "name": "skrub",
+  "version": "0.0.0",
+  "description": "descrr",
+  "license": "MIT",
+  "homepage": "https://github.com/dawsonbotsford/skrub#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dawsonbotsford/skrub.git"
+  },
+  "author": {
+    "name": "Dawson Botsford",
+    "email": "DawsonBotsford@gmail.com",
+    "url": "dawsonbotsford.com"
+  },
+  "bugs": {
+    "url": "https://github.com/dawsonbotsford/skrub/issues"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "windows",
+    "lean",
+    "minimal",
+    "documented",
+    "tested",
+    "licensed",
+    "ava",
+    "dawson"
+  ],
+  "dependencies": {
+    "crypto": "0.0.3",
+    "del": "^2.2.0",
+    "file-bytes": "^2.0.1",
+    "glob": "^7.0.3",
+    "globby": "^4.0.0",
+    "pify": "^2.3.0",
+    "rimraf": "^2.5.2"
+  },
+  "devDependencies": {
+    "ava": "^0.14.0",
+    "temp-write": "^2.1.0",
+    "xo": "^0.14.0"
+  },
+  "xo": {
+    "space": true
+  }
+}
