@@ -1,9 +1,9 @@
 'use strict';
 const fs = require('fs');
+const path = require('path');
 const globby = require('globby');
 const fileBytes = require('file-bytes');
 const objectAssign = require('object-assign');
-const path = require('path');
 const pify = require('pify');
 const rimrafP = pify(require('rimraf'));
 const toType = require('to-type');
@@ -32,16 +32,19 @@ module.exports = (pattern, opts) => new Promise(resolve => {
   }
   opts = objectAssign({}, opts);
 
-  const files = globby.sync(pattern, opts);
-  resolve(Promise.all(files.map(file => {
-    file = path.resolve(opts.cwd || '', file);
-    return floodFile(file)
-      .then(() => {
-        return rimrafP(file).then(() => {
-          return file;
-        });
+  resolve(globby(pattern, opts).then(function (files) {
+    return Promise.all(files.map(function (file) {
+      file = path.resolve(opts.cwd || '', file);
+
+      if (opts.dryRun) {
+        return file;
+      }
+
+      return rimrafP(file).then(function () {
+        return file;
       });
-  })));
+    }));
+  }));
 });
 
 module.exports.floodFile = floodFile;
