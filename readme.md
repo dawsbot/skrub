@@ -18,6 +18,7 @@ Works on OS X, Linux, and Windows.
 In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `scrub` first floods the file with garbage data and then **removes it forever**.
 
 Looking for the [command-line version](https://github.com/dawsonbotsford/skrub-cli)?
+
 <br>
 
 ## Install
