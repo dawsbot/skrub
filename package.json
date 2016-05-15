@@ -36,6 +36,7 @@
     "dawson"
   ],
   "dependencies": {
+    "buffer-safe": "^1.0.0",
     "file-bytes": "^2.0.1",
     "globby": "^4.0.0",
     "object-assign": "^4.1.0",

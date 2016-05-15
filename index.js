@@ -1,4 +1,5 @@
 'use strict';
+require('buffer-safe');
 const fs = require('fs');
 const path = require('path');
 const globby = require('globby');
