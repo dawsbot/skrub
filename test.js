@@ -1,14 +1,38 @@
-const fs = require('fs');
+const fs = require('fs-extra');
+const path = require('path');
 const pathExists = require('path-exists');
 const tempWrite = require('temp-write');
+const tempfile = require('tempfile');
+
 import test from 'ava';
 import skrub from './';
 
-test('valid args to main', t => {
+function exists(t, files) {
+  [].concat(files).forEach(file => t.true(pathExists.sync(path.join(t.context.tmp, file))));
+}
+
+function notExists(t, files) {
+  [].concat(files).forEach(file => t.false(pathExists.sync(path.join(t.context.tmp, file))));
+}
+
+const fixtures = [
+  '1.tmp',
+  '2.tmp',
+  '3.tmp',
+  '4.tmp',
+  '.dot.tmp'
+];
+
+test.beforeEach(t => {
+  t.context.tmp = tempfile();
+  fixtures.forEach(fixture => fs.ensureFileSync(path.join(t.context.tmp, fixture)));
+});
+
+test('invalid args to main', t => {
   t.throws(skrub(), TypeError);
 });
 
-test('valid args to floodFile', t => {
+test('invalid args to floodFile', t => {
   t.throws(skrub.floodFile('doesNotExist.txt'), Error);
   t.throws(skrub.floodFile(false), Error);
 });
@@ -24,16 +48,11 @@ test('floods file', async t => {
   t.not(initialContents, finalContents);
   t.is(initialContents.length, finalContents.length);
   t.deepEqual(finalContents, Buffer.alloc(5));
-
-  // skrub(file)
-  //   .then(resp => {
-  //     console.log('skrub resp: ', resp)
-  //   })
 });
 
-test('removes file', async t => {
-  const file = tempWrite.sync('');
-  await skrub(file);
+test('removes files', async t => {
+  await skrub(['*.tmp', '!1*'], {cwd: t.context.tmp});
 
-  t.false(pathExists.sync(file));
+  exists(t, ['1.tmp', '.dot.tmp']);
+  notExists(t, ['2.tmp', '3.tmp', '4.tmp']);
 });
