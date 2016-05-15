@@ -36,7 +36,6 @@
     "dawson"
   ],
   "dependencies": {
-    "arrify": "^1.0.1",
     "file-bytes": "^2.0.1",
     "globby": "^4.0.0",
     "object-assign": "^4.1.0",
