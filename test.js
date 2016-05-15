@@ -1,11 +1,17 @@
-const fs = require('fs-extra');
 const path = require('path');
+const fs = require('fs-extra');
 const pathExists = require('path-exists');
 const tempWrite = require('temp-write');
 const tempfile = require('tempfile');
 
 import test from 'ava';
 import skrub from './';
+
+function prependPath(t, files) {
+  return files.map(file => {
+    return path.join(t.context.tmp, file);
+  });
+}
 
 function exists(t, files) {
   [].concat(files).forEach(file => t.true(pathExists.sync(path.join(t.context.tmp, file))));
@@ -28,16 +34,16 @@ test.beforeEach(t => {
   fixtures.forEach(fixture => fs.ensureFileSync(path.join(t.context.tmp, fixture)));
 });
 
-test('invalid args to main', t => {
+test('skrub - invalid args', t => {
   t.throws(skrub(), TypeError);
 });
 
-test('invalid args to floodFile', t => {
+test('skrub.flood - invalid args', t => {
   t.throws(skrub.floodFile('doesNotExist.txt'), Error);
   t.throws(skrub.floodFile(false), Error);
 });
 
-test('floods file', async t => {
+test('skrub.flood - floods file', async t => {
   const initialContents = '12345';
   const file = tempWrite.sync(initialContents);
 
@@ -50,7 +56,18 @@ test('floods file', async t => {
   t.deepEqual(finalContents, Buffer.alloc(5));
 });
 
-test('removes files', async t => {
+test('skrub - dryrun does not remove files', async t => {
+  await skrub(['*.tmp', '!1*'], {
+    cwd: t.context.tmp,
+    dryRun: true
+  }).then(files => {
+    t.deepEqual(files, prependPath(t, ['2.tmp', '3.tmp', '4.tmp']));
+  });
+
+  exists(t, ['1.tmp', '2.tmp', '3.tmp', '4.tmp', '.dot.tmp']);
+});
+
+test('skrub - removes files', async t => {
   await skrub(['*.tmp', '!1*'], {cwd: t.context.tmp});
 
   exists(t, ['1.tmp', '.dot.tmp']);
