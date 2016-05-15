@@ -23,13 +23,12 @@ npm install --save skrub
 
 ## Usage
 
-
-
 ```js
 const skrub = require('skrub');
 
-skrub('hackathons');
-//=> 'hackathons'
+skrub(['./passwords.txt', '!dontDelete.js']).then(paths => {
+    console.log('Skrubbed files and folders:\n', paths.join('\n'));
+});
 ```
 <br>
 
