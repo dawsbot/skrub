@@ -29,9 +29,12 @@ module.exports = pattern => new Promise(resolve => {
 
   const files = globby.sync(pattern);
   resolve(Promise.all(files.map(file => {
-    // console.log(file);
     return floodFile(file)
-      .then(rimrafP(file));
+      .then(() => {
+        return rimrafP(file).then(() => {
+          return file;
+        });
+      });
   })));
 });
 
