@@ -1,15 +1,21 @@
 <p align="center">
   <a><img src="img/logo.png" title="skrub logo"/></a>
 
-  <a href="https://travis-ci.org/dawsonbotsford/skrub"><img src="https://api.travis-ci.org/dawsonbotsford/skrub.svg?branch=master"></a>
-  <a href="https://ci.appveyor.com/project/dawsonbotsford/skrub"><img src="http://www.gravatar.com/avatar/5f66f56cae930eb9ab2cd9e62b8285e6"></a>
+  <br>
+
+  <b>Irreversible file deletion from any operating system</b>
+
+  <br>
+  <br><br><a href="https://travis-ci.org/dawsonbotsford/skrub"><img src="https://api.travis-ci.org/dawsonbotsford/skrub.svg?branch=master"></a>
+  <a href="https://ci.appveyor.com/project/dawsonbotsford/skrub"><img src="https://ci.appveyor.com/api/projects/status/3x9sboy9jsil33mb?svg=true"></a>
+
+  <br>
+
+  <a href="https://www.npmjs.com/package/skrub"><img src="https://img.shields.io/npm/v/skrub.svg"></a>
+  <a href="http://npmjs.org/skrub"><img src="http://img.shields.io/npm/dm/skrub.svg?style=flat"></a>
+  <a href="https://github.com/sindresorhus/xo"><img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg"></a>
 </p>
 
-[![npm version](https://img.shields.io/npm/v/skrub.svg)](https://www.npmjs.com/package/skrub)
-[![npm download count](http://img.shields.io/npm/dm/skrub.svg?style=flat)](http://npmjs.org/skrub)
-[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
-
-> Irreversible file deletion from any operating system
 
 <br>
 
