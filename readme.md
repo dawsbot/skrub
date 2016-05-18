@@ -34,6 +34,12 @@ npm install --save skrub
 
 <br>
 
+Or try the [command-line version](https://github.com/dawsonbotsford/skrub-cli)
+```
+npm install --global skrub
+```
+<br>
+
 ## Usage
 
 ```js
