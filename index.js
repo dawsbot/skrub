@@ -17,7 +17,7 @@ const floodFile = file => {
         wstream.write(Buffer.alloc(size));
         wstream.end();
         wstream.on('finish', () => {
-          resolve();
+          resolve(file);
         });
       });
     }).catch(err => {

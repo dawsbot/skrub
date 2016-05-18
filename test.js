@@ -47,7 +47,10 @@ test('skrub.flood - floods file', async t => {
   const initialContents = '12345';
   const file = tempWrite.sync(initialContents);
 
-  await skrub.floodFile(file);
+  await skrub.floodFile(file)
+    .then(resp => {
+      t.is(resp, file);
+    });
   const finalContents = fs.readFileSync(file);
 
   t.true(pathExists.sync(file));

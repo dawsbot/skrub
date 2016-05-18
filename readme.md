@@ -3,7 +3,7 @@
 
   <br>
 
-  <b>Irreversible file deletion from any operating system</b>
+  <b>Irreversible file deletion on every operating system</b>
 
   <br>
   <br><br><a href="https://travis-ci.org/dawsonbotsford/skrub"><img src="https://api.travis-ci.org/dawsonbotsford/skrub.svg?branch=master"></a>
@@ -16,12 +16,11 @@
   <a href="https://github.com/sindresorhus/xo"><img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg"></a>
 </p>
 
-
 <br>
 
 Works on OS X, Linux, and Windows.
 
-In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `skrub` first floods the file with garbage data and then **removes it forever**.
+In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `skrub` first floods the file with garbage data and then **removes them forever**.
 
 Looking for the [command-line version](https://github.com/dawsonbotsford/skrub-cli)?
 
@@ -84,6 +83,16 @@ skrub(['tmp/*.js'], {dryRun: true}).then(paths => {
   console.log('Files and folders that would be skrubbed:\n', paths.join('\n'));
 });
 ```
+
+<br>
+
+### skrub.floodFile(filePath)
+
+Returns a promise for the flooded filePath. Replaces the contents of file at `filePath` with the same amount of bytes zero-filled.
+
+#### filePath
+
+Type: `string`
 
 <br>
 
