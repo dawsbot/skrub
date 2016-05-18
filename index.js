@@ -41,9 +41,11 @@ module.exports = (pattern, opts) => new Promise(resolve => {
         return file;
       }
 
-      return rimrafP(file).then(function () {
-        return file;
-      });
+      return floodFile(file)
+        .then(rimrafP(file))
+        .then(function () {
+          return file;
+        });
     }));
   }));
 });
