@@ -1,6 +1,6 @@
 {
   "name": "skrub",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Secure file deletion from any operating system",
   "license": "MIT",
   "homepage": "https://github.com/dawsonbotsford/skrub#readme",
@@ -26,6 +26,17 @@
     "index.js"
   ],
   "keywords": [
+    "delete",
+    "remove",
+    "secure",
+    "security",
+    "rm",
+    "-rf",
+    "del",
+    "glob",
+    "globby",
+    "tools",
+    "tool",
     "windows",
     "lean",
     "minimal",

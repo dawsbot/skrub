@@ -45,7 +45,7 @@ npm install --global skrub
 ```js
 const skrub = require('skrub');
 
-skrub(['passwords.*', '!dontDelete.js']).then(paths => {
+skrub(['*', '!important*']).then(paths => {
     console.log('Skrubbed files and folders:\n', paths.join('\n'));
 });
 ```
