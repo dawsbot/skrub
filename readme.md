@@ -108,6 +108,8 @@ Type: `string`
 
 Not really. The `rm` command simply frees the file-pointer in your operating system. This allows the file contents to be written over **at a later date**. This means that during the time before that memory location is needed (which it may never), your data is still at rest on your system.
 
+`rm` ships with a `-P` flag which first does file overwrites with blank data. Although the end result is similar, this does not support negation in globbing and is not cross-platform.
+
 <br>
 
 ## Related
