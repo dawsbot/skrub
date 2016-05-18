@@ -21,7 +21,7 @@
 
 Works on OS X, Linux, and Windows.
 
-In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `scrub` first floods the file with garbage data and then **removes it forever**.
+In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `skrub` first floods the file with garbage data and then **removes it forever**.
 
 Looking for the [command-line version](https://github.com/dawsonbotsford/skrub-cli)?
 
@@ -84,6 +84,14 @@ skrub(['tmp/*.js'], {dryRun: true}).then(paths => {
   console.log('Files and folders that would be skrubbed:\n', paths.join('\n'));
 });
 ```
+
+<br>
+
+## FAQ
+
+### But I can do the same thing with `rm`
+
+Not really. The `rm` command simply frees the file-pointer in your operating system. This allows the file contents to be written over **at a later date**. This means that during the time before that memory location is needed (which it may never), your data is still at rest on your system.
 
 <br>
 
