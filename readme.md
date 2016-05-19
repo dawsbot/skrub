@@ -110,6 +110,9 @@ Not really. The `rm` command simply frees the file-pointer in your operating sys
 
 `rm` ships with a `-P` flag which first does file overwrites with blank data. Although the end result is similar, this does not support negation in globbing and is not cross-platform.
 
+### What about Solid State Drives?
+If you're using a solid state disk, or even some newer mechanical disks, `skrub` and other overwriting-based methods *may not be effective*, since the disk may not actually write where you think it's writing. Read more [here](http://cseweb.ucsd.edu/~m3wei/assets/pdf/FMS-2010-Secure-Erase.pdf)
+
 <br>
 
 ## Related
