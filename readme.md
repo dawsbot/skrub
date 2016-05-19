@@ -4,6 +4,8 @@
   <br>
 
   <b>Irreversible file deletion on every operating system</b>
+  <br>
+  <i>* Will only work securely on file systems that overwrite blocks in place *</i>
 
   <br>
   <br><br><a href="https://travis-ci.org/dawsonbotsford/skrub"><img src="https://api.travis-ci.org/dawsonbotsford/skrub.svg?branch=master"></a>
@@ -20,7 +22,9 @@
 
 Works on OS X, Linux, and Windows.
 
-In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `skrub` first floods the file with garbage data and then **removes them forever**.
+In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `skrub` first floods the file with garbage data and then **removes them forever**. Read the [FAQ](#faq) for information on *how secure* this method is. 
+
+TL;DR: The current method is low fidelity and "will prevent the data from being retrieved simply by reading using standard system functions". Read more [here](https://en.wikipedia.org/wiki/Data_remanence#Overwriting).
 
 Looking for the [command-line version](https://github.com/dawsonbotsford/skrub-cli)?
 
@@ -104,14 +108,27 @@ Type: `string`
 
 ## FAQ
 
+### Unreliable file systems
+`skrub` and other overwriting-based methods *may not be effective* on your file system, since the disk may not actually write where you think it's writing. Here is a list of systems which are known not to cooperate with the current file overwriting method. [Why don't these work?](http://cseweb.ucsd.edu/~m3wei/assets/pdf/FMS-2010-Secure-Erase.pdf)
+* [copy-on-write systems](https://en.wikipedia.org/wiki/Copy-on-write) like btrfs
+* ssd's at large
+* reiserfs
+* COW
+
+In the above scenarios, `skrub` is just a friendly wrapper around `rm`.
+
+### How secure is this?
+At a minimum, this will prevent the data from being retrieved simply by reading from the media again using standard system functions.
+
 ### But I can do the same thing with `rm`
 
 Not really. The `rm` command simply frees the file-pointer in your operating system. This allows the file contents to be written over **at a later date**. This means that during the time before that memory location is needed (which it may never), your data is still at rest on your system.
 
 `rm` ships with a `-P` flag which first does file overwrites with blank data. Although the end result is similar, this does not support negation in globbing and is not cross-platform.
 
-### What about Solid State Drives?
-If you're using a solid state disk, or even some newer mechanical disks, `skrub` and other overwriting-based methods *may not be effective*, since the disk may not actually write where you think it's writing. Read more [here](http://cseweb.ucsd.edu/~m3wei/assets/pdf/FMS-2010-Secure-Erase.pdf)
+### But I can do the same thing with `srm`
+
+Not really. The `srm` command does 
 
 <br>
 
