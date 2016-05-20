@@ -150,7 +150,7 @@ Not the case. The `shred` command is a Linux only distribution while `skrub` is 
 
 <br>
 
-### Benchmarking
+## Benchmarking
 
 TL;DR: Running more iterations than one is hardly slower.
 ```
@@ -166,9 +166,12 @@ Try it yourself:
 npm run benchmark
 ```
 
+<br>
+
 ## Related
 
 * [skrub-cli](https://github.com/dawsonbotsford/skrub-cli)
+* [file-wipe](https://github.com/simonlovesyou/file-wipe)
 * [del](https://github.com/sindresorhus/del)
 * [trash](https://github.com/sindresorhus/trash)
 
