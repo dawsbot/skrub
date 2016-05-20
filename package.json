@@ -1,6 +1,6 @@
 {
   "name": "skrub",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Secure file deletion from any operating system",
   "license": "MIT",
   "homepage": "https://github.com/dawsonbotsford/skrub#readme",
@@ -20,7 +20,7 @@
     "node": ">=0.12.0"
   },
   "scripts": {
-    "test": "xo && ava",
+    "test": "xo '!*.es5.js' && ava",
     "_buildBenchmark": "babel benchmark/index.benchmark.js -o benchmark/index.benchmark.es5.js",
     "_runBenchmark": "node benchmark/index.benchmark.es5.js",
     "benchmark": "npm run _buildBenchmark && npm run _runBenchmark"
