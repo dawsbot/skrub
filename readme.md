@@ -22,7 +22,7 @@
 
 Works on OS X, Linux, and Windows.
 
-In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `skrub` first floods the file with garbage data and then **removes them forever**. Read the [FAQ](#faq) for information on *how secure* this method is. 
+In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `skrub` first floods the file with garbage data and then **removes them forever**. Read the [FAQ](#faq) for information on *how secure* this method is.
 
 TL;DR: The current method is low fidelity and "will prevent the data from being retrieved simply by reading using standard system functions". Read more [here](https://en.wikipedia.org/wiki/Data_remanence#Overwriting).
 
@@ -77,32 +77,50 @@ See supported minimatch [patterns](https://github.com/isaacs/minimatch#usage).
 
 Type: `object`
 
-See the `node-glob` [options](https://github.com/isaacs/node-glob#options).
-
 ##### dryRun
 
-Type: `boolean`
+Type: `boolean`<br />
 Default: `false`
 
 See what would be skrubbed without actually deleting anything.
 
 ```js
-const skrub = require('skrub');
-
 skrub(['tmp/*.js'], {dryRun: true}).then(paths => {
+  console.log('Files and folders that would be skrubbed:\n', paths.join('\n'));
+});
+```
+
+In additon to these two options, all `node-glob` [options](https://github.com/isaacs/node-glob#options) are also available.
+
+##### iterations
+
+Type: `number`(must be >= 0)<br />
+Default: 1
+
+Zero-fill the specified file multiple times.
+
+```js
+skrub(['tmp/*.js'], {iterations: 7}).then(paths => {
   console.log('Files and folders that would be skrubbed:\n', paths.join('\n'));
 });
 ```
 
 <br>
 
-### skrub.floodFile(filePath)
+### skrub.floodFile(filePath, iterations)
 
 Returns a promise for the flooded filePath. Replaces the contents of file at `filePath` with the same amount of bytes zero-filled.
 
 #### filePath
 
 Type: `string`
+
+#### iterations
+
+Type: `number`(must be >= 0)<br />
+Default: 1
+
+Zero-fill the specified file multiple times.
 
 <br>
 
@@ -131,6 +149,22 @@ Not really. The `rm` command simply frees the file-pointer in your operating sys
 Not the case. The `shred` command is a Linux only distribution while `skrub` is cross-platform. `skrub` also supports negation within file globbing. `shred` does not have a friendly node.js module wrapper around it either.
 
 <br>
+
+### Benchmarking
+
+TL;DR: Running more iterations than one is hardly slower.
+```
+skrub(tempFile, {iterations: 1}) x 57,512 ops/sec ±2.60% (69 runs sampled)
+skrub(tempFile, {iterations: 7}) x 54,338 ops/sec ±2.59% (82 runs sampled)
+skrub(tempFile, {iterations: 36}) x 54,631 ops/sec ±2.95% (79 runs sampled)
+Fastest is skrub(tempFile, {iterations: 1})
+```
+
+Try it yourself:
+
+```shell
+npm run benchmark
+```
 
 ## Related
 

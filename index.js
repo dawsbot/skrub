@@ -9,20 +9,25 @@ const pify = require('pify');
 const rimrafP = pify(require('rimraf'));
 const toType = require('to-type');
 
-const floodFile = file => {
-  return fileBytes(file)
-    .then((size) => {
-      return new Promise(resolve => {
-        let wstream = fs.createWriteStream(file);
-        wstream.write(Buffer.alloc(size));
-        wstream.end();
-        wstream.on('finish', () => {
-          resolve(file);
+const floodFile = (file, iterations) => {
+  if (typeof iterations === 'undefined') {
+    iterations = 1;
+  }
+  return Promise.all(Array(iterations).fill(
+    fileBytes(file)
+      .then((size) => {
+        return new Promise(resolve => {
+          let wstream = fs.createWriteStream(file);
+          wstream.write(Buffer.alloc(size));
+          wstream.end();
+          wstream.on('finish', () => {
+            resolve(file);
+          });
         });
-      });
-    }).catch(err => {
-      throw err;
-    });
+      }).catch(err => {
+        throw err;
+      })
+  ));
 };
 
 module.exports = (pattern, opts) => new Promise(resolve => {
@@ -40,8 +45,7 @@ module.exports = (pattern, opts) => new Promise(resolve => {
       if (opts.dryRun) {
         return file;
       }
-
-      return floodFile(file)
+      return floodFile(file, opts.iterations)
         .then(rimrafP(file))
         .then(function () {
           return file;

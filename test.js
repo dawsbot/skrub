@@ -21,6 +21,13 @@ function notExists(t, files) {
   [].concat(files).forEach(file => t.false(pathExists.sync(path.join(t.context.tmp, file))));
 }
 
+function deArr(arr) {
+  if (arr.length === 1) {
+    return arr[0];
+  }
+  return arr;
+}
+
 const fixtures = [
   '1.tmp',
   '2.tmp',
@@ -49,7 +56,7 @@ test('skrub.flood - floods file', async t => {
 
   await skrub.floodFile(file)
     .then(resp => {
-      t.is(resp, file);
+      t.is(deArr(resp), file);
     });
   const finalContents = fs.readFileSync(file);
 
@@ -70,8 +77,15 @@ test('skrub - dryrun does not remove files', async t => {
   exists(t, ['1.tmp', '2.tmp', '3.tmp', '4.tmp', '.dot.tmp']);
 });
 
-test('skrub - removes files', async t => {
+test('skrub - removes files undefiend iterations', async t => {
   await skrub(['*.tmp', '!1*'], {cwd: t.context.tmp});
+
+  exists(t, ['1.tmp', '.dot.tmp']);
+  notExists(t, ['2.tmp', '3.tmp', '4.tmp']);
+});
+
+test('skrub - removes files 1 iterations', async t => {
+  await skrub(['*.tmp', '!1*'], {iterations: 1, cwd: t.context.tmp});
 
   exists(t, ['1.tmp', '.dot.tmp']);
   notExists(t, ['2.tmp', '3.tmp', '4.tmp']);

@@ -1,6 +1,6 @@
 .DS_Store
 test.html
-
+benchmark/*.es5.js
 # Logs
 logs
 *.log

@@ -1,6 +1,6 @@
 {
   "name": "skrub",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Secure file deletion from any operating system",
   "license": "MIT",
   "homepage": "https://github.com/dawsonbotsford/skrub#readme",
@@ -20,7 +20,10 @@
     "node": ">=0.12.0"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava",
+    "_buildBenchmark": "babel benchmark/index.benchmark.js -o benchmark/index.benchmark.es5.js",
+    "_runBenchmark": "node benchmark/index.benchmark.es5.js",
+    "benchmark": "npm run _buildBenchmark && npm run _runBenchmark"
   },
   "files": [
     "index.js"
@@ -57,6 +60,10 @@
   },
   "devDependencies": {
     "ava": "^0.14.0",
+    "babel-cli": "^6.9.0",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-polyfill": "^6.9.0",
+    "benchmark": "^2.1.0",
     "fs-extra": "^0.30.0",
     "path-exists": "^3.0.0",
     "temp-write": "^2.1.0",
