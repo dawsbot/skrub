@@ -171,6 +171,7 @@ npm run benchmark
 ## Related
 
 * [skrub-cli](https://github.com/dawsonbotsford/skrub-cli)
+* [file-wipe](https://github.com/simonlovesyou/file-wipe)
 * [del](https://github.com/sindresorhus/del)
 * [trash](https://github.com/sindresorhus/trash)
 
