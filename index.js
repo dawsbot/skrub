@@ -10,7 +10,7 @@ const rimrafP = pify(require('rimraf'));
 const toType = require('to-type');
 
 const floodFile = (file, iterations) => {
-  if (typeof iterations === 'undefined') {
+  if (typeof iterations === 'undefined' || iterations < 0) {
     iterations = 1;
   }
   return Promise.all(Array(iterations).fill(
