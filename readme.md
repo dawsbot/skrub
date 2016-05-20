@@ -126,6 +126,10 @@ Not really. The `rm` command simply frees the file-pointer in your operating sys
 
 `rm` ships with a `-P` flag which first does file overwrites with blank data. Although the end result is similar, this does not support negation in globbing and is not cross-platform.
 
+### But I can do the same thing with `shred`
+
+Not the case. The `shred` command is a Linux only distribution while `skrub` is cross-platform. `skrub` also supports negation within file globbing. `shred` does not have a friendly node.js module wrapper around it either.
+
 <br>
 
 ## Related
