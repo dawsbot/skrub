@@ -17,13 +17,12 @@
     "url": "https://github.com/dawsonbotsford/skrub/issues"
   },
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=4.0.0"
   },
   "scripts": {
     "test": "xo '!*.es5.js' && ava",
-    "_buildBenchmark": "babel benchmark/index.benchmark.js -o benchmark/index.benchmark.es5.js",
-    "_runBenchmark": "node benchmark/index.benchmark.es5.js",
-    "benchmark": "npm run _buildBenchmark && npm run _runBenchmark"
+    "prebenchmark": "babel benchmark/index.benchmark.js -o benchmark/index.benchmark.es5.js",
+    "benchmark": "node benchmark/index.benchmark.es5.js"
   },
   "files": [
     "index.js"
@@ -53,13 +52,11 @@
     "buffer-safe": "^1.0.0",
     "file-bytes": "^2.0.1",
     "globby": "^4.0.0",
-    "object-assign": "^4.1.0",
     "pify": "^2.3.0",
-    "rimraf": "^2.5.2",
-    "to-type": "^1.1.0"
+    "rimraf": "^2.5.2"
   },
   "devDependencies": {
-    "ava": "^0.14.0",
+    "ava": "^0.16.0",
     "babel-cli": "^6.9.0",
     "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-polyfill": "^6.9.0",
@@ -68,7 +65,7 @@
     "path-exists": "^3.0.0",
     "temp-write": "^2.1.0",
     "tempfile": "^1.1.1",
-    "xo": "^0.15.1"
+    "xo": "^0.16.0"
   },
   "xo": {
     "space": true
