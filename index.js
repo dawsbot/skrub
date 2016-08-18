@@ -4,10 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const globby = require('globby');
 const fileBytes = require('file-bytes');
-const objectAssign = require('object-assign');
 const pify = require('pify');
 const rimrafP = pify(require('rimraf'));
-const toType = require('to-type');
 
 const floodFile = (file, iterations) => {
   if (typeof iterations === 'undefined' || iterations < 0) {
@@ -32,11 +30,9 @@ const floodFile = (file, iterations) => {
 
 module.exports = (pattern, opts) => {
   // validate arguments
-  const patternType = toType(pattern);
-  if (patternType !== 'string' && patternType !== 'array') {
+  if (typeof pattern !== 'string' && !Array.isArray(pattern)) {
     throw new TypeError(`Expected a string or array for pattern, got ${typeof pattern}`);
   }
-  opts = objectAssign({}, opts);
 
   return globby(pattern, opts).then(function (files) {
     return Promise.all(files.map(function (file) {
