@@ -42,7 +42,9 @@ test.beforeEach(t => {
 });
 
 test('skrub - invalid args', t => {
-  t.throws(skrub(), TypeError);
+  t.throws(() => {
+    skrub();
+  }, TypeError);
 });
 
 test('skrub.flood - invalid args', t => {

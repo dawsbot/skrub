@@ -30,7 +30,7 @@ const floodFile = (file, iterations) => {
   ));
 };
 
-module.exports = (pattern, opts) => new Promise(resolve => {
+module.exports = (pattern, opts) => {
   // validate arguments
   const patternType = toType(pattern);
   if (patternType !== 'string' && patternType !== 'array') {
@@ -38,7 +38,7 @@ module.exports = (pattern, opts) => new Promise(resolve => {
   }
   opts = objectAssign({}, opts);
 
-  resolve(globby(pattern, opts).then(function (files) {
+  return globby(pattern, opts).then(function (files) {
     return Promise.all(files.map(function (file) {
       file = path.resolve(opts.cwd || '', file);
 
@@ -51,7 +51,7 @@ module.exports = (pattern, opts) => new Promise(resolve => {
           return file;
         });
     }));
-  }));
-});
+  });
+};
 
 module.exports.floodFile = floodFile;
