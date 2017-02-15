@@ -8,8 +8,8 @@
   <i>* Will only work securely on file systems that overwrite blocks in place *</i>
 
   <br>
-  <br><br><a href="https://travis-ci.org/dawsonbotsford/skrub"><img src="https://api.travis-ci.org/dawsonbotsford/skrub.svg?branch=master"></a>
-  <a href="https://ci.appveyor.com/project/dawsonbotsford/skrub"><img src="https://ci.appveyor.com/api/projects/status/3x9sboy9jsil33mb?svg=true"></a>
+  <br><br><a href="https://travis-ci.org/dawsbot/skrub"><img src="https://api.travis-ci.org/dawsbot/skrub.svg?branch=master"></a>
+  <a href="https://ci.appveyor.com/project/dawsbot/skrub"><img src="https://ci.appveyor.com/api/projects/status/3x9sboy9jsil33mb?svg=true"></a>
 
   <br>
 
@@ -20,13 +20,13 @@
 
 <br>
 
-Works on OS X, Linux, and Windows.
+In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `skrub` first floods file(s) with garbage data and then **removes them forever**.
 
-In contrast to `rm`, which [leaves file contents unallocated in memory](http://unix.stackexchange.com/questions/10883/where-do-files-go-when-the-rm-command-is-issued), `skrub` first floods the file with garbage data and then **removes them forever**. Read the [FAQ](#faq) for information on *how secure* this method is.
+The current method is low fidelity and "will prevent the data from being retrieved simply by reading using standard system functions". Read more in the [FAQ](#faq) below or on Wikipedia [here](https://en.wikipedia.org/wiki/Data_remanence#Overwriting).
 
-TL;DR: The current method is low fidelity and "will prevent the data from being retrieved simply by reading using standard system functions". Read more [here](https://en.wikipedia.org/wiki/Data_remanence#Overwriting).
+Works on OS X, Linux, **and** Windows.
 
-Looking for the [command-line version](https://github.com/dawsonbotsford/skrub-cli)?
+Looking for the [command-line version](https://github.com/dawsbot/skrub-cli)?
 
 <br>
 
@@ -38,7 +38,7 @@ npm install --save skrub
 
 <br>
 
-Or try the [command-line version](https://github.com/dawsonbotsford/skrub-cli)
+Or try the [command-line version](https://github.com/dawsbot/skrub-cli)
 ```
 npm install --global skrub
 ```
@@ -170,7 +170,7 @@ npm run benchmark
 
 ## Related
 
-* [skrub-cli](https://github.com/dawsonbotsford/skrub-cli)
+* [skrub-cli](https://github.com/dawsbot/skrub-cli)
 * [file-wipe](https://github.com/simonlovesyou/file-wipe)
 * [del](https://github.com/sindresorhus/del)
 * [trash](https://github.com/sindresorhus/trash)
@@ -179,4 +179,4 @@ npm run benchmark
 
 ## License
 
-MIT © [Dawson Botsford](http://dawsonbotsford.com)
+MIT © [Dawson Botsford](http://dawsonbotsord.com)
