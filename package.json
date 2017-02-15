@@ -3,10 +3,10 @@
   "version": "1.3.0",
   "description": "Secure file deletion from any operating system",
   "license": "MIT",
-  "homepage": "https://github.com/dawsonbotsford/skrub#readme",
+  "homepage": "https://github.com/dawsbot/skrub#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dawsonbotsford/skrub.git"
+    "url": "git+https://github.com/dawsbot/skrub.git"
   },
   "author": {
     "name": "Dawson Botsford",
@@ -14,7 +14,7 @@
     "url": "dawsonbotsford.com"
   },
   "bugs": {
-    "url": "https://github.com/dawsonbotsford/skrub/issues"
+    "url": "https://github.com/dawsbot/skrub/issues"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -51,21 +51,21 @@
   "dependencies": {
     "buffer-safe": "^1.0.0",
     "file-bytes": "^2.0.1",
-    "globby": "^4.0.0",
+    "globby": "^6.1.0",
     "pify": "^2.3.0",
     "rimraf": "^2.5.2"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
+    "ava": "^0.18.1",
     "babel-cli": "^6.9.0",
     "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-polyfill": "^6.9.0",
     "benchmark": "^2.1.0",
-    "fs-extra": "^0.30.0",
+    "fs-extra": "^2.0.0",
     "path-exists": "^3.0.0",
-    "temp-write": "^2.1.0",
+    "temp-write": "^3.0.0",
     "tempfile": "^1.1.1",
-    "xo": "^0.16.0"
+    "xo": "^0.17.1"
   },
   "xo": {
     "space": true
