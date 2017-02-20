@@ -37,7 +37,8 @@ const fixtures = [
 ];
 
 test.beforeEach(t => {
-  t.context.tmp = tempfile();
+  t.context.extraTempDir = 'extra-temp';
+  t.context.tmp = path.join(tempfile(), t.context.extraTempDir);
   fixtures.forEach(fixture => fs.ensureFileSync(path.join(t.context.tmp, fixture)));
 });
 
@@ -76,7 +77,7 @@ test('skrub - dryrun does not remove files', async t => {
     t.deepEqual(files, prependPath(t, ['2.tmp', '3.tmp', '4.tmp']));
   });
 
-  exists(t, ['1.tmp', '2.tmp', '3.tmp', '4.tmp', '.dot.tmp']);
+  exists(t, fixtures);
 });
 
 test('skrub - removes files undefiend iterations', async t => {
