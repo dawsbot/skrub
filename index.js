@@ -43,9 +43,7 @@ module.exports = (pattern, opts) => {
       }
       return floodFile(file, opts.iterations)
         .then(rimrafP(file))
-        .then(function () {
-          return file;
-        });
+        .then(() => file);
     }));
   });
 };
